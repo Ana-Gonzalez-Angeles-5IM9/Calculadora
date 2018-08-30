@@ -56,6 +56,8 @@ public class Calculadora extends JFrame {
 		setTitle("Calculadora Simple Ana González Ángeles 5IM9");
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setResizable(true);
+                
+                Color uno = new Color(234,138,138);
 
 		// Vamos a dibujar sobre el panel
 		JPanel panel = (JPanel) this.getContentPane();
@@ -72,6 +74,8 @@ public class Calculadora extends JFrame {
 		panelNumeros = new JPanel();
 		panelNumeros.setLayout(new GridLayout(4, 3));
 		panelNumeros.setBorder(null);
+                panelNumeros.setBackground(uno);
+                panelNumeros.setFont(new Font("Arial", Font.BOLD, 20));
 
 		for (int n = 9; n >= 0; n--) {
 			nuevoBotonNumerico("" + n);
@@ -82,8 +86,9 @@ public class Calculadora extends JFrame {
 		panel.add("Center", panelNumeros);
 
 		panelOperaciones = new JPanel();
-		panelOperaciones.setLayout(new GridLayout(6, 1));
+		panelOperaciones.setLayout(new GridLayout(6, 5));
 		panelOperaciones.setBorder(null);
+                panelOperaciones.setFont(new Font("Arial", Font.BOLD, 20));
 
 		nuevoBotonOperacion("+");
 		nuevoBotonOperacion("-");
@@ -112,7 +117,10 @@ public class Calculadora extends JFrame {
 	 */
 	private void nuevoBotonNumerico(String digito) {
 		JButton btn = new JButton();
+                Color uno = new Color(234,138,138);
 		btn.setText(digito);
+                btn.setBackground(uno);
+                btn.setBorder(null);
 		btn.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -132,8 +140,9 @@ public class Calculadora extends JFrame {
 	 */
 	private void nuevoBotonOperacion(String operacion) {
 		JButton btn = new JButton(operacion);
-		btn.setForeground(Color.RED);
-
+                Color dos = new Color(235, 213, 213);
+                btn.setBackground(dos);
+                btn.setBorder(null);
 		btn.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -199,8 +208,18 @@ public class Calculadora extends JFrame {
 			resultado *= new Double(pantalla.getText());
 		} else if (operacion.equals("cos")){
                         resultado = Math.cos(new Double (pantalla.getText()));
+                } else if (operacion.equals("arc cos")) {
+                        resultado = Math.acos(new Double (pantalla.getText()));
+                } else if (operacion.equals("sen")) {
+                        resultado = Math.sin(new Double (pantalla.getText()));
+                } else if (operacion.equals("arc sen")) {
+                        resultado = Math.asin(new Double (pantalla.getText()));
+                } else if (operacion.equals("tan")) {
+                        resultado = Math.tan(new Double (pantalla.getText()));
+                } else if (operacion.equals("arc tan")) {
+                        resultado = Math.atan(new Double (pantalla.getText()));
                 }
-
+                
 		pantalla.setText("" + resultado);
 		operacion = "";
 	}
